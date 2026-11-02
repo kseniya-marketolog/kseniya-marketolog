@@ -741,6 +741,14 @@ h2{line-height:1.04;letter-spacing:-.01em}
   .case-card:hover{transform:none;box-shadow:none}
   #cases .head p:after{content:" Листайте вбок →";color:var(--yellow);font-weight:700}
 }
+/* v13: 8 кейсов — 4 в ряд на широком экране; фото в блоке «Кто я» */
+@media(min-width:1101px){.case-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.case-title{font-size:21px}}
+.lb-stage{max-width:min(1700px,94vw)}
+.about-photo{aspect-ratio:1/1;border:0;background:#000;width:min(100%,470px)}
+.about{grid-template-columns:minmax(260px,470px) 1fr}
+@media(max-width:900px){.about{grid-template-columns:1fr}}
+.about-photo:before{display:none}
+.about-photo img{filter:none;object-position:center}
 </style>
 </head>
 <body>
@@ -845,6 +853,8 @@ h2{line-height:1.04;letter-spacing:-.01em}
 <button class="case-card" type="button" data-full="cases/case-04.webp"><span class="case-thumb"><img src="cases/thumbs/case-04.webp" alt="" loading="lazy"></span><span class="case-body"><span class="case-tag">Кейс 4 · EdTech</span><span class="case-title">Мини-курс по вайбкодингу: упаковка продукта</span><span class="case-metric"><b>Идея → 11 уроков</b> готово к продакшену</span></span></button>
 <button class="case-card" type="button" data-full="cases/case-05.webp"><span class="case-thumb"><img src="cases/thumbs/case-05.webp" alt="" loading="lazy"></span><span class="case-body"><span class="case-tag">Кейс 5 · EdTech</span><span class="case-title">QuickOffer: маркетинг школы под ключ</span><span class="case-metric"><b>162 + 274</b> целевых реферала</span></span></button>
 <button class="case-card" type="button" data-full="cases/case-liber-novus.webp"><span class="case-thumb"><img src="cases/thumbs/case-liber-novus.webp" alt="" loading="lazy"></span><span class="case-body"><span class="case-tag">Кейс 6 · Образование</span><span class="case-title">Либер Новус: система маркетинга с нуля</span><span class="case-metric"><b>65 оплат</b> за первый поток</span></span></button>
+<button class="case-card" type="button" data-full="cases/case-lets-hunt.webp"><span class="case-thumb"><img src="cases/thumbs/case-lets-hunt.webp" alt="" loading="lazy"></span><span class="case-body"><span class="case-tag">Кейс 7 · HR</span><span class="case-title">Let’s Hunt: привлечение клиентов для кадрового агентства</span><span class="case-metric"><b>~15 лидов</b> и 4–5 сделок в месяц</span></span></button>
+<button class="case-card" type="button" data-full="cases/case-ystaler.webp"><span class="case-thumb"><img src="cases/thumbs/case-ystaler.webp" alt="" loading="lazy"></span><span class="case-body"><span class="case-tag">Кейс 8 · Одежда</span><span class="case-title">Ystaler: от контента к продажам</span><span class="case-metric"><b>330 → 1008</b> подписчиков за 2 месяца</span></span></button>
 </div>
 <div class="cta"><strong>Есть задача, которую нужно разобрать?</strong><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить маркетинг →</span></a></div>
 </div></section>
@@ -881,7 +891,7 @@ h2{line-height:1.04;letter-spacing:-.01em}
 
 <section class="section" id="about">
 <div class="wrap about">
-<div class="about-photo"><img src="ksenia-chekanova-portrait-styled.png" alt="Ксения Чеканова" onerror="var p=this.parentNode;p.parentNode.classList.add('no-photo');p.remove()"></div>
+<div class="about-photo"><img src="img/about.webp" alt="Ксения Чеканова" onerror="var p=this.parentNode;p.parentNode.classList.add('no-photo');p.remove()"></div>
 <div><div class="kicker">кто я</div><h2>Ксения<br><span class="marker">Чеканова.</span></h2><p>Я смотрю на маркетинг как на систему, а не набор отдельных задач.</p><p>Моя задача — разобраться, где бизнес сейчас, куда ему нужно прийти и что конкретно нужно сделать, чтобы туда попасть.</p><div class="quote">Стратегия → запуск → система.</div><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить</span></a></div>
 </div></section>
 
