@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru">
+<script>document.documentElement.classList.add("js")</script>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -749,6 +750,60 @@ h2{line-height:1.04;letter-spacing:-.01em}
 @media(max-width:900px){.about{grid-template-columns:1fr}}
 .about-photo:before{display:none}
 .about-photo img{filter:none;object-position:center}
+/* === v14: услуги — ровные одинаковые карточки === */
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.svc{position:relative;background:#111;border:1px solid #333;border-left:4px solid var(--yellow);padding:26px 30px 28px;overflow:hidden;transition:border-color .3s,transform .35s cubic-bezier(.2,.75,.2,1),box-shadow .35s}
+.svc:after{content:"";position:absolute;right:-60px;bottom:-60px;width:160px;height:160px;border:1px solid #2a2a2a;border-radius:50%;transition:transform .6s cubic-bezier(.2,.75,.2,1),border-color .3s}
+.svc:hover{border-color:var(--yellow);transform:translateY(-4px);box-shadow:8px 8px 0 var(--yellow)}
+.svc:hover:after{transform:scale(1.5);border-color:rgba(232,220,0,.35)}
+.svc-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.svc-num{font-family:Oswald,Impact,sans-serif;color:var(--yellow);font-size:34px;line-height:1}
+.svc-of{font-size:11px;color:#666;letter-spacing:.16em}
+.svc h3{font-family:Oswald,Impact,sans-serif;text-transform:uppercase;font-size:clamp(32px,3.4vw,46px);line-height:1.02;margin:0 0 18px;color:var(--white)}
+.svc .service-list li{font-size:14px}
+@media(max-width:900px){.svc-grid{grid-template-columns:1fr}}
+
+/* === v14: анимации === */
+.ticker{background:var(--yellow);color:#000;overflow:hidden;border-top:2px solid #000;border-bottom:2px solid #000;transform:rotate(-1.2deg);margin:-14px -10px 0;position:relative;z-index:3}
+.ticker-track{display:flex;width:max-content;animation:ticker 28s linear infinite}
+.ticker span{font-family:Oswald,Impact,sans-serif;text-transform:uppercase;font-size:22px;padding:12px 26px;white-space:nowrap;display:flex;align-items:center;gap:26px}
+.ticker span:after{content:"✦";font-size:14px}
+@keyframes ticker{to{transform:translateX(-50%)}}
+h1 .ln{display:block;color:var(--white)}
+h1 .hl{color:var(--yellow)}
+.js h1 .ln{opacity:0;transform:translateY(40px);animation:lnIn .8s cubic-bezier(.2,.75,.2,1) forwards}
+.js h1 .ln:nth-child(2){animation-delay:.12s}.js h1 .ln:nth-child(3){animation-delay:.24s}.js h1 .ln:nth-child(4){animation-delay:.36s}
+@keyframes lnIn{to{opacity:1;transform:none}}
+.js .hero .kicker,.js .hero .lead,.js .hero .buttons,.js .hero .meta{opacity:0;animation:lnIn .8s cubic-bezier(.2,.75,.2,1) forwards;transform:translateY(20px)}
+.js .hero .lead{animation-delay:.5s}.js .hero .buttons{animation-delay:.62s}.js .hero .meta{animation-delay:.74s}
+.js .hero-art{opacity:0;animation:artIn 1s .2s cubic-bezier(.2,.75,.2,1) forwards}
+@keyframes artIn{from{opacity:0;transform:translateX(40px) rotate(4deg)}to{opacity:1;transform:none}}
+.hero-art img{animation:float 7s ease-in-out 1.2s infinite}
+@keyframes float{0%,100%{transform:rotate(1.7deg) translateY(0)}50%{transform:rotate(.6deg) translateY(-10px)}}
+.tape{animation:wob 5s ease-in-out infinite}.sticker{animation:wob 6s ease-in-out .8s infinite reverse}
+@keyframes wob{0%,100%{rotate:0deg}50%{rotate:3deg}}
+.js .rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.75,.2,1),transform .8s cubic-bezier(.2,.75,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv-l{transform:translateX(-40px)}.js .rv-r{transform:translateX(40px)}
+.js .mark{background:linear-gradient(var(--yellow),var(--yellow)) no-repeat 0 0/0% 100%;transition:background-size .9s cubic-bezier(.7,0,.2,1) .25s,color .3s .25s;color:inherit}
+.js .in .mark,.js .mark.in{background-size:100% 100%;color:#000}
+.cta{position:relative}
+.js .cta.rv{transform:none}
+.js .cta:before{content:"";position:absolute;top:-3px;left:0;height:3px;width:0;background:#fff;transition:width 1.1s cubic-bezier(.7,0,.2,1) .2s}
+.js .cta.in:before{width:100%;background:var(--yellow)}
+.js .cta{border-top-color:transparent}
+.problem,.step,.aud,.why-card,.price-row{transition:transform .3s,background .3s,border-color .3s}
+.aud:hover,.why-card:hover{border-color:var(--yellow);transform:translateY(-4px)}
+.aud:hover:after{transform:scale(1.6);border-color:var(--yellow)}.aud:after{transition:transform .6s,border-color .3s}
+.problem:hover{transform:translateX(8px)}
+.problem:hover .n{color:var(--yellow);-webkit-text-stroke:1px #000}
+.price-row:hover{transform:translateX(6px)}
+.about-photo img{transition:transform .8s cubic-bezier(.2,.75,.2,1)}.about-photo:hover img{transform:scale(1.04)}
+.poster img,.plan-frame img{transition:transform .8s cubic-bezier(.2,.75,.2,1)}.poster:hover img{transform:rotate(-1deg) scale(1.02)}
+.poster-note{animation:wob 5s ease-in-out infinite}
+.lightbox:not([hidden]) .lb-stage img{animation:lbIn .4s cubic-bezier(.2,.75,.2,1)}
+@keyframes lbIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.js .rv,.js h1 .ln,.js .hero *{opacity:1!important;transform:none!important}.js .mark{background-size:100% 100%;color:#000}}
 </style>
 </head>
 <body>
@@ -774,8 +829,8 @@ h2{line-height:1.04;letter-spacing:-.01em}
 <div class="wrap hero-grid">
 <div>
   <div class="kicker">внешний руководитель маркетинга</div>
-  <h1>Маркетолог<br><span>от стратегии</span><br>до клиентов<br>и денег</h1>
-  <p class="lead">С вас проблема — с меня решение. Работаем на цифрах и стратегии, а не на догадках и эмоциях.</p>
+  <h1><span class="ln">Маркетолог</span><span class="ln hl">от стратегии</span><span class="ln">до клиентов</span><span class="ln">и денег</span></h1>
+  <p class="lead">С вас проблема — с меня решение. Работаем на цифрах и стратегии, а не на догадках и эмоциях</p>
   <div class="buttons">
     <a class="btn pulse" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить маркетинг →</span></a>
     <a class="btn" href="#services"><span>Что я забираю на себя</span></a>
@@ -789,63 +844,65 @@ h2{line-height:1.04;letter-spacing:-.01em}
 </div>
 </div></section>
 
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Стратегия</span><span>Позиционирование</span><span>Оффер</span><span>Воронка</span><span>Реклама</span><span>Контент</span><span>Подрядчики</span><span>Аналитика</span><span>Система</span><span>Стратегия</span><span>Позиционирование</span><span>Оффер</span><span>Воронка</span><span>Реклама</span><span>Контент</span><span>Подрядчики</span><span>Аналитика</span><span>Система</span></div></div>
+
 <section class="section paper" id="problem">
 <div class="wrap split">
 <div class="poster"><img src="img/problem.webp" alt="Собственник в хаосе маркетинговых задач"><div class="poster-note">ЗНАКОМО?</div></div>
 <div>
-<div class="head problem-head"><h2>Маркетинг есть.<br><span class="mark">Системы нет.</span></h2><p>Не нужно нагружать себя сильнее. Нужно передать маркетинг тому, кто превращает хаос в порядок.</p></div>
+<div class="head problem-head"><h2>Маркетинг есть<br><span class="mark">Системы нет</span></h2><p>Не нужно нагружать себя сильнее. Нужно передать маркетинг тому, кто превращает хаос в порядок</p></div>
 <div class="problems">
-<div class="problem"><div class="n">01</div><div><h3>Нет стабильного потока клиентов.</h3><p>Непонятно где их искать и чем привлекать.</p></div></div>
-<div class="problem"><div class="n">02</div><div><h3>Все что-то делают, но результата нет.</h3><p>Задачи идут одна за другой, а общей логики и понятного результата нет.</p></div></div>
-<div class="problem"><div class="n">03</div><div><h3>Вы сами управляете маркетингом.</h3><p>Ищете подрядчиков, ставите задачи и держите в голове весь отдел.</p></div></div>
-<div class="problem"><div class="n">04</div><div><h3>Непонятно, что работает.</h3><p>Деньги уходят в каналы, а связки и цифры не складываются в систему.</p></div></div>
+<div class="problem"><div class="n">01</div><div><h3>Нет стабильного потока клиентов</h3><p>Непонятно где их искать и чем привлекать</p></div></div>
+<div class="problem"><div class="n">02</div><div><h3>Все что-то делают, но результата нет</h3><p>Задачи идут одна за другой, а общей логики и понятного результата нет</p></div></div>
+<div class="problem"><div class="n">03</div><div><h3>Вы сами управляете маркетингом</h3><p>Ищете подрядчиков, ставите задачи и держите в голове весь отдел</p></div></div>
+<div class="problem"><div class="n">04</div><div><h3>Непонятно, что работает</h3><p>Деньги уходят в каналы, а связки и цифры не складываются в систему</p></div></div>
 </div>
 <div class="cta"><strong></strong><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить маркетинг</span></a></div>
 </div></div></section>
 
 <section class="section" id="audience">
 <div class="wrap">
-<div class="head"><div class="kicker">с кем работаю</div><h2>Когда нужен не исполнитель,<br>а человек, который <span class="mark">заберёт маркетинг.</span></h2><p>Основная коммуникация — с теми, у кого есть продукт и бизнес-задача, но маркетинг не собран в работающую систему.</p></div>
+<div class="head"><div class="kicker">с кем работаю</div><h2>Когда нужен не исполнитель,<br>а человек, который <span class="mark">заберёт маркетинг</span></h2><p>Основная коммуникация — с теми, у кого есть продукт и бизнес-задача, но маркетинг не собран в работающую систему</p></div>
 <div class="audience">
-<div class="aud"><b>01</b><h3>Эксперты и специалисты</h3><p>Хотите перестать делать маркетинг самостоятельно и освободить время под продукт и клиентов.</p></div>
-<div class="aud"><b>02</b><h3>Онлайн-школы и EdTech</h3><p>Маркетинг нужно собрать в понятную систему с планом, каналами, подрядчиками и аналитикой.</p></div>
-<div class="aud"><b>03</b><h3>Бизнес с хаотичным маркетингом</h3><p>Маркетинг уже есть, но слабый, разрозненный или не даёт понятного результата.</p></div>
-<div class="aud"><b>04</b><h3>Собственники</h3><p>Нужен один человек, который отвечает за маркетинг и управление подрядчиками.</p></div>
+<div class="aud"><b>01</b><h3>Эксперты и специалисты</h3><p>Хотите перестать делать маркетинг самостоятельно и освободить время под продукт и клиентов</p></div>
+<div class="aud"><b>02</b><h3>Онлайн-школы и EdTech</h3><p>Маркетинг нужно собрать в понятную систему с планом, каналами, подрядчиками и аналитикой</p></div>
+<div class="aud"><b>03</b><h3>Бизнес с хаотичным маркетингом</h3><p>Маркетинг уже есть, но слабый, разрозненный или не даёт понятного результата</p></div>
+<div class="aud"><b>04</b><h3>Собственники</h3><p>Нужен один человек, который отвечает за маркетинг и управление подрядчиками</p></div>
 </div>
 <div class="cta"><strong>Узнали свою ситуацию?</strong><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить</span></a></div>
 </div></section>
 
 <section class="section gray" id="services">
 <div class="wrap">
-<div class="head"><div class="kicker">что я забираю</div><h2>Не ставьте мне задачи.<br><span class="marker">Отдайте мне маркетинг.</span></h2><p>Я снимаю с вас блок маркетинга: собираю стратегию, организую реализацию и управляю теми, кто нужен проекту.</p></div>
-<div class="ticket-grid">
-<div class="ticket" aria-label="01 Стратегия"><div class="ticket-inner"><div class="ticket-front"><div class="num">01</div><div><h3>СТРАТЕГИЯ</h3><ul class="service-list"><li>Анализ бизнеса и текущей точки</li><li>Цели, аудитория и точки роста</li><li>Позиционирование и оффер</li><li>План маркетинга и приоритеты</li></ul></div></div></div></div>
-<div class="ticket" aria-label="03 Подрядчики"><div class="ticket-inner"><div class="ticket-front"><div class="num">03</div><div><h3>ПОДРЯДЧИКИ</h3><ul class="service-list"><li>Подбор специалистов под задачи</li><li>Постановка задач и контроль сроков</li><li>Координация работы команды</li><li>Контроль качества и результата</li></ul></div></div></div></div>
-<div class="ticket" aria-label="02 Продвижение"><div class="ticket-inner"><div class="ticket-front"><div class="num">02</div><div><h3>ПРОДВИЖЕНИЕ</h3><ul class="service-list"><li>Выбор каналов продвижения</li><li>Реклама и контент</li><li>Запуск маркетинговых активностей</li><li>Контроль показателей и корректировки</li></ul></div></div></div></div>
-<div class="ticket" aria-label="04 Система"><div class="ticket-inner"><div class="ticket-front"><div class="num">04</div><div><h3>СИСТЕМА</h3><ul class="service-list"><li>Воронка и путь клиента</li><li>Аналитика и отчётность</li><li>Контроль результатов по цифрам</li><li>Система маркетинга для дальнейшего роста</li></ul></div></div></div></div>
+<div class="head"><div class="kicker">что я забираю</div><h2>Не ставьте мне задачи<br><span class="marker">Отдайте мне маркетинг</span></h2><p>Я снимаю с вас блок маркетинга: собираю стратегию, организую реализацию и управляю теми, кто нужен проекту</p></div>
+<div class="svc-grid">
+<article class="svc"><div class="svc-top"><span class="svc-num">01</span><span class="svc-of">01 / 04</span></div><h3>Стратегия</h3><ul class="service-list"><li>Анализ бизнеса и текущей точки</li><li>Цели, аудитория и точки роста</li><li>Позиционирование и оффер</li><li>План маркетинга и приоритеты</li></ul></article>
+<article class="svc"><div class="svc-top"><span class="svc-num">02</span><span class="svc-of">02 / 04</span></div><h3>Продвижение</h3><ul class="service-list"><li>Выбор каналов продвижения</li><li>Реклама и контент</li><li>Запуск маркетинговых активностей</li><li>Контроль показателей и корректировки</li></ul></article>
+<article class="svc"><div class="svc-top"><span class="svc-num">03</span><span class="svc-of">03 / 04</span></div><h3>Подрядчики</h3><ul class="service-list"><li>Подбор специалистов под задачи</li><li>Постановка задач и контроль сроков</li><li>Координация работы команды</li><li>Контроль качества и результата</li></ul></article>
+<article class="svc"><div class="svc-top"><span class="svc-num">04</span><span class="svc-of">04 / 04</span></div><h3>Система</h3><ul class="service-list"><li>Воронка и путь клиента</li><li>Аналитика и отчётность</li><li>Контроль результатов по цифрам</li><li>Система маркетинга для дальнейшего роста</li></ul></article>
 </div>
-<div class="promise"><strong>Один человек.<br>Весь маркетинг.</strong><p>Не человек, которому нужно расписать сто задач. А человек, который сам собирает, что нужно делать, и доводит реализацию до понятного результата.</p></div>
+<div class="promise"><strong>Один человек<br>Весь маркетинг</strong><p>Не человек, которому нужно расписать сто задач. А человек, который сам собирает, что нужно делать, и доводит реализацию до понятного результата</p></div>
 <div class="cta"><strong>Хотите снять с себя маркетинг?</strong><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить маркетинг</span></a></div>
 </div></section>
 
 <section class="section paper" id="work">
 <div class="wrap">
-<div class="head"><div class="kicker">как я работаю</div><h2>Хаос → стратегия →<br><span class="mark">действия → система.</span></h2><p>Сначала разбираемся, что происходит. Потом появляется план. Потом он начинает работать.</p></div>
+<div class="head"><div class="kicker">как я работаю</div><h2>Хаос → стратегия →<br><span class="mark">действия → система</span></h2><p>Сначала разбираемся, что происходит. Потом появляется план. Потом он начинает работать</p></div>
 <div class="work">
 <div class="plan-frame"><img src="img/plan.webp" alt="Визуальная концепция маркетингового плана"></div>
 <div class="step-list">
-<div class="step"><b>01 · АНАЛИЗ</b><h3>Разбираю, что происходит</h3><p>Продукт, аудитория, конкуренты, текущий маркетинг и цифры.</p></div>
-<div class="step"><b>02 · СТРАТЕГИЯ</b><h3>Определяю, куда идём</h3><p>Позиционирование, оффер, каналы и приоритеты.</p></div>
-<div class="step"><b>03 · ЗАПУСК</b><h3>Превращаю план в действия</h3><p>Запускаю нужные инструменты и подключаю специалистов.</p></div>
-<div class="step"><b>04 · СИСТЕМА</b><h3>Смотрю на цифры</h3><p>Нахожу точки роста, убираю лишнее и докручиваю то, что работает.</p></div>
+<div class="step"><b>01 · АНАЛИЗ</b><h3>Разбираю, что происходит</h3><p>Продукт, аудитория, конкуренты, текущий маркетинг и цифры</p></div>
+<div class="step"><b>02 · СТРАТЕГИЯ</b><h3>Определяю, куда идём</h3><p>Позиционирование, оффер, каналы и приоритеты</p></div>
+<div class="step"><b>03 · ЗАПУСК</b><h3>Превращаю план в действия</h3><p>Запускаю нужные инструменты и подключаю специалистов</p></div>
+<div class="step"><b>04 · СИСТЕМА</b><h3>Смотрю на цифры</h3><p>Нахожу точки роста, убираю лишнее и докручиваю то, что работает</p></div>
 </div>
 </div>
-<div class="cta"><strong>Хочу понятный план действий.</strong><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить маркетинг →</span></a></div>
+<div class="cta"><strong>Хочу понятный план действий</strong><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить маркетинг →</span></a></div>
 </div></section>
 
 <section class="section gray" id="cases">
 <div class="wrap">
-<div class="head"><div class="kicker">результаты</div><h2>Кейсы.<br><span class="marker">Что сделано и что получилось.</span></h2><p>Реальные проекты, собранные в визуальные кейсы: исходная ситуация, работа с маркетингом и итог.</p></div>
+<div class="head"><div class="kicker">результаты</div><h2>Кейсы<br><span class="marker">Что сделано и что получилось</span></h2><p>Реальные проекты, собранные в визуальные кейсы: исходная ситуация, работа с маркетингом и итог</p></div>
 <div class="case-grid" id="caseGrid">
 <button class="case-card" type="button" data-full="cases/case-01.webp"><span class="case-thumb"><img src="cases/thumbs/case-01.webp" alt="" loading="lazy"></span><span class="case-body"><span class="case-tag">Кейс 1 · EdTech</span><span class="case-title">Запуск онлайн-курса с нуля до набора</span><span class="case-metric"><b>0 → 1200+</b> подписчиков за 4 месяца</span></span></button>
 <button class="case-card" type="button" data-full="cases/case-02.webp"><span class="case-thumb"><img src="cases/thumbs/case-02.webp" alt="" loading="lazy"></span><span class="case-body"><span class="case-tag">Кейс 2 · EdTech</span><span class="case-title">Автоворонка курса по психологии</span><span class="case-metric"><b>Ручной → авто</b> воронка из 5 этапов</span></span></button>
@@ -861,12 +918,12 @@ h2{line-height:1.04;letter-spacing:-.01em}
 
 <section class="section" id="why">
 <div class="wrap">
-<div class="head"><div class="kicker">почему я</div><h2>Вам не нужен ещё один<br><span class="marker">исполнитель.</span></h2><p>Вам нужен человек, который заберёт маркетинг, а не добавит ещё одну папку с задачами.</p></div>
+<div class="head"><div class="kicker">почему я</div><h2>Вам не нужен ещё один<br><span class="marker">исполнитель</span></h2><p>Вам нужен человек, который заберёт маркетинг, а не добавит ещё одну папку с задачами</p></div>
 <div class="why">
-<div class="why-card"><h3>Одна точка ответственности</h3><p>Не нужно отдельно управлять рекламой, контентом, дизайном и другими специалистами.</p></div>
-<div class="why-card"><h3>Смотрю на бизнес целиком</h3><p>Продукт → ЦА → позиционирование → оффер → каналы → реклама → контент → воронка → продажи → аналитика.</p></div>
-<div class="why-card"><h3>Не нужно мной управлять</h3><p>Я сама формирую план, ставлю задачи подрядчикам и контролирую реализацию.</p></div>
-<div class="why-card"><h3>Понятно, что происходит</h3><p>Есть стратегия, приоритеты, план действий и цифры, по которым можно принимать решения.</p></div>
+<div class="why-card"><h3>Одна точка ответственности</h3><p>Не нужно отдельно управлять рекламой, контентом, дизайном и другими специалистами</p></div>
+<div class="why-card"><h3>Смотрю на бизнес целиком</h3><p>Продукт → ЦА → позиционирование → оффер → каналы → реклама → контент → воронка → продажи → аналитика</p></div>
+<div class="why-card"><h3>Не нужно мной управлять</h3><p>Я сама формирую план, ставлю задачи подрядчикам и контролирую реализацию</p></div>
+<div class="why-card"><h3>Понятно, что происходит</h3><p>Есть стратегия, приоритеты, план действий и цифры, по которым можно принимать решения</p></div>
 </div>
 <div class="cta"><strong>Нужен человек, который заберёт маркетинг?</strong><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить</span></a></div>
 </div></section>
@@ -874,16 +931,16 @@ h2{line-height:1.04;letter-spacing:-.01em}
 <section class="section paper" id="formats">
 <div class="wrap">
 <div class="head"><span id="price"></span>
-<div class="kicker">форматы и цены</div><h2>Можно начать<br>с <span class="mark">одной задачи.</span></h2><p>Работаю как разово, так и по полному сопровождению. Актуальные условия и финальную стоимость обсуждаем под задачу.</p></div>
+<div class="kicker">форматы и цены</div><h2>Можно начать<br>с <span class="mark">одной задачи</span></h2><p>Работаю как разово, так и по полному сопровождению. Актуальные условия и финальную стоимость обсуждаем под задачу</p></div>
 <div class="pricing">
-<div class="price-main"><div class="kicker" style="color:#000">01 · ОСНОВНОЙ ФОРМАТ</div><h3>Ведение проекта<br>под ключ</h3><div class="price">от 80 000 ₽</div><p>Маркетинг под управлением: стратегия → запуск → подрядчики → контроль → аналитика → развитие.</p><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Связаться</span></a></div>
+<div class="price-main"><div class="kicker" style="color:#000">01 · ОСНОВНОЙ ФОРМАТ</div><h3>Ведение проекта<br>под ключ</h3><div class="price">от 80 000 ₽</div><p>Маркетинг под управлением: стратегия → запуск → подрядчики → контроль → аналитика → развитие</p><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Связаться</span></a></div>
 <div class="price-list">
 <h3>Основные услуги</h3>
 <div class="price-row"><span>Разработка стратегии продвижения</span><b>30 000 ₽</b></div>
 <div class="price-row"><span>Консультация по продвижению</span><b>от 3 500 ₽</b></div>
 <div class="price-row"><span>Таргетинг</span><b>30 000–50 000 ₽</b></div>
 <div class="price-row"><span>Аудит аккаунта</span><b>5 000 ₽</b></div>
-<div class="price-note">Я работаю как разово, так и по полному сопровождению. Условия и актуальные цены можно узнать по кнопке.</div>
+<div class="price-note">Я работаю как разово, так и по полному сопровождению. Условия и актуальные цены можно узнать по кнопке</div>
 <a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener" style="margin-top:20px"><span>Связаться →</span></a>
 </div>
 </div>
@@ -892,7 +949,7 @@ h2{line-height:1.04;letter-spacing:-.01em}
 <section class="section" id="about">
 <div class="wrap about">
 <div class="about-photo"><img src="img/about.webp" alt="Ксения Чеканова" onerror="var p=this.parentNode;p.parentNode.classList.add('no-photo');p.remove()"></div>
-<div><div class="kicker">кто я</div><h2>Ксения<br><span class="marker">Чеканова.</span></h2><p>Я смотрю на маркетинг как на систему, а не набор отдельных задач.</p><p>Моя задача — разобраться, где бизнес сейчас, куда ему нужно прийти и что конкретно нужно сделать, чтобы туда попасть.</p><div class="quote">Стратегия → запуск → система.</div><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить</span></a></div>
+<div><div class="kicker">кто я</div><h2>Ксения<br><span class="marker">Чеканова</span></h2><p>Я смотрю на маркетинг как на систему, а не набор отдельных задач</p><p>Моя задача — разобраться, где бизнес сейчас, куда ему нужно прийти и что конкретно нужно сделать, чтобы туда попасть</p><div class="quote">Стратегия → запуск → система</div><a class="btn" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Обсудить</span></a></div>
 </div></section>
 
 <section class="form final-cta" id="contact">
@@ -900,7 +957,7 @@ h2{line-height:1.04;letter-spacing:-.01em}
 <div>
 <div class="kicker">старт</div>
 <h2>Есть маркетинг,<br>который нужно <span class="mark">собрать?</span></h2>
-<div class="head"><p>Напишите мне в Telegram. Коротко расскажите, что происходит с маркетингом сейчас. Дальше разберёмся по ситуации.</p></div>
+<div class="head"><p>Напишите мне в Telegram. Коротко расскажите, что происходит с маркетингом сейчас. Дальше разберёмся по ситуации</p></div>
 </div>
 <div class="final-cta-action">
 <a class="btn pulse" href="https://t.me/Kseniya_chek1" target="_blank" rel="noopener"><span>Написать в Telegram →</span></a>
@@ -938,6 +995,18 @@ h2{line-height:1.04;letter-spacing:-.01em}
   document.addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)});
   var x0=null;lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
   lb.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>60)show(d<0?i+1:i-1);x0=null});
+})();
+</script>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var sel=[['.section .head',''],['.problem','l'],['.poster','l'],['.aud',''],['.svc',''],['.promise',''],['.step','r'],['.plan-frame','l'],['.case-card',''],['.why-card',''],['.price-main','l'],['.price-list','r'],['.about-photo','l'],['.about > div:last-child','r'],['.final-cta-grid > div',''],['.cta','']];
+  sel.forEach(function(p){if(p[0]==='.case-card'&&innerWidth<=560)return;document.querySelectorAll(p[0]).forEach(function(el){
+    el.classList.add('rv');if(p[1])el.classList.add('rv-'+p[1]);
+    var sib=[].indexOf.call(el.parentNode.children,el);el.style.transitionDelay=Math.min(sib,6)*90+'ms';
+  })});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target;t.classList.add('in');io.unobserve(t);setTimeout(function(){t.style.transitionDelay=''},1500)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
 })();
 </script>
 </body>
